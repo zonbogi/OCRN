@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Observatoire des collectivités RN</title>
+
+    <meta
+        name="description"
+        content="Suivez et documentez l'action des collectivités dirigées par le Rassemblement national."
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="assets/favicon/favicon.ico"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="96x96"
+        href="assets/favicon/favicon-96x96.png"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="assets/favicon/apple-touch-icon.png"
+    >
+
+    <link
+        rel="manifest"
+        href="assets/favicon/site.webmanifest"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <div id="header"></div>
+
+<script>
+
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+
+        document.getElementById("header").innerHTML = data;
+
+        const navbar = document.querySelector(".navbar");
+
+        navbar.classList.add("intro");
+
+        setTimeout(() => {
+            navbar.classList.remove("intro");
+        }, 1000);
+
+        document
+            .querySelector(".logo-container")
+            .classList.add("home-active");
+
+            console.log(
+    document.querySelector(".logo-container").className
+);
+
+        const page = window.location.pathname.split("/").pop();
+
+        document.querySelectorAll(".menu-item").forEach(item => {
+
+            if (item.getAttribute("href") === page) {
+                item.classList.add("actif");
+            }
+
+        });
+
+    });
+
+</script>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+
+            <h2>
+                Qu'est-ce que <br>
+                l'OCRN ?
+            </h2>
+
+            <p>
+                <strong>L'Observatoire des collectivités RN</strong>, lancé en 2026,
+                est une initiative citoyenne indépendante visant à documenter,
+                archiver et analyser les décisions et politiques publiques des élus
+                locaux affiliés au Rassemblement national (anciennement Front national).
+                À travers des observations sourcées et accessibles, il entend permettre
+                aux citoyens, journalistes, chercheurs et responsables publics de mieux
+                comprendre l'action du RN au niveau local ainsi que ses implications
+                pour le débat national.
+            </p>
+
+        </div>
+
+        <div class="hero-image">
+        <img src="assets/mairiephare.png" alt="Mairie phare">
+    </div>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

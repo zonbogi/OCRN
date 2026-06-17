@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Observation</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <script>
+
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+
+                document.getElementById(
+                    "header"
+                ).innerHTML = data;
+
+            });
+
+    </script>
+
+    <main class="observation-page">
+
+        <h1 id="observation-titre">
+            Chargement...
+        </h1>
+
+        <div class="observation-meta">
+
+    <div id="observation-date"></div>
+
+    <div id="observation-collectivite"></div>
+
+</div>
+
+<img
+    id="observation-image"
+    src=""
+    alt=""
+>
+
+<div
+    id="observation-thematique"
+    class="observation-thematique"
+></div>
+
+<div
+    id="observation-contenu"
+    class="observation-contenu"
+></div>
+
+<div class="source-card">
+
+    <h3>
+        Source
+    </h3>
+
+    <div id="source-nom">
+
+    </div>
+
+    <a
+        id="source-lien"
+        target="_blank"
+    >
+        Consulter la source →
+    </a>
+
+</div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+
+    <script src="observation.js"></script>
+
+</body>
+
+</html>

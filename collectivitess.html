@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Observatoire des collectivités RN</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+
+    <link rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="assets/favicon/favicon-96x96.png">
+
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="assets/favicon/apple-touch-icon.png">
+
+    <link rel="manifest"
+          href="assets/favicon/site.webmanifest">
+
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <script>
+
+    fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+
+        document.getElementById("header").innerHTML = data;
+
+        const navbar = document.querySelector(".navbar");
+
+        navbar.classList.add("intro");
+
+        setTimeout(() => {
+            navbar.classList.remove("intro");
+        }, 1000);
+
+        const page = window.location.pathname.split("/").pop();
+        
+        document.querySelectorAll(".menu-item").forEach(item => {
+
+            if (item.getAttribute("href") === page) {
+                item.classList.add("actif");
+            }
+
+        });
+
+    });
+
+    </script>
+
+    <main class="collectivites-page">
+
+        <div class="collectivites-header">
+
+            <h1>Collectivités RN</h1>
+
+            <input
+                type="text"
+                id="recherche"
+                placeholder="Rechercher une collectivité..."
+            >
+
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div id="nb-collectivites">0</div>
+                <span>Collectivités</span>
+            </div>
+
+            <div class="stat-card">
+                <div id="nb-observations">0</div>
+                <span>Observations</span>
+            </div>
+
+            <div class="stat-card">
+                <div id="population-totale">0</div>
+                <span>Habitants</span>
+            </div>
+
+        </div>
+
+        <div class="collectivites-container">
+
+            <div id="collectivites-table"></div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+    <script src="collectivites.js"></script>
+
+</body>
+
+</html>
+```

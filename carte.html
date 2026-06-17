@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observatoire des collectivités RN</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="assets/favicon/favicon-96x96.png">
+
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="assets/favicon/apple-touch-icon.png">
+
+    <link rel="manifest"
+        href="assets/favicon/site.webmanifest">
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css">
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <script>
+
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+
+        document.getElementById("header").innerHTML = data;
+
+        const navbar = document.querySelector(".navbar");
+
+        navbar.classList.add("intro");
+
+        setTimeout(() => {
+            navbar.classList.remove("intro");
+        }, 1000);
+
+        const page = window.location.pathname.split("/").pop();
+        
+        document.querySelectorAll(".menu-item").forEach(item => {
+
+            if (item.getAttribute("href") === page) {
+                item.classList.add("actif");
+            }
+
+        });
+
+    });
+
+    </script>
+
+    <main class="carte-page">
+
+    <div class="filtres-zone">
+
+        <h2 id="filtres-drag-handle">
+    Filtres
+</h2>
+
+        <label>Population</label>
+
+        <div id="filtre-population">
+
+    <label>
+        <input type="checkbox" value="moins1000">
+        < 1 000
+    </label>
+
+    <label>
+        <input type="checkbox" value="1000-10000">
+        1 000 – 10 000
+    </label>
+
+    <label>
+        <input type="checkbox" value="10000-100000">
+        10 000 – 100 000
+    </label>
+
+    <label>
+        <input type="checkbox" value="plus100000">
+        > 100 000
+    </label>
+
+</div>
+
+        <label>Documentation</label>
+
+        <select id="filtre-documentation">
+
+    <option value="all">
+        Toutes
+    </option>
+
+    <option value="1-5">
+        1 à 5 fiches
+    </option>
+
+    <option value="6-10">
+        6 à 10 fiches
+    </option>
+
+    <option value="11-25">
+        11 à 25 fiches
+    </option>
+
+    <option value="25plus">
+        Plus de 25 fiches
+    </option>
+
+</select>
+
+        <label>Thématique forte</label>
+
+        <select id="filtre-theme">
+
+    <option value="all">
+        Toutes
+    </option>
+
+    <option value="Vie démocratique">
+        Vie démocratique
+    </option>
+
+    <option value="Discriminations et exclusions">
+        Discriminations et exclusions
+    </option>
+
+    <option value="Culture et mémoire">
+        Culture et mémoire
+    </option>
+
+    <option value="Gestion municipale">
+        Gestion municipale
+    </option>
+
+    <option value="Sécurité et ordre public">
+        Sécurité et ordre public
+    </option>
+
+    <option value="Symboles et idéologie">
+        Symboles et idéologie
+    </option>
+
+</select>
+
+<button id="reset-filtres">
+    Réinitialiser les filtres
+</button>
+
+<div id="nb-resultats">
+
+    0 collectivités affichées
+
+</div>
+
+    </div>
+
+    <div id="map"></div>
+
+    <aside class="fiche-zone">
+    </aside>
+
+</main>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+    <script src="carte.js"></script>
+
+</body>
+
+</html>

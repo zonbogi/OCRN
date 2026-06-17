@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Collectivité</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <script>
+
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+
+                document.getElementById(
+                    "header"
+                ).innerHTML = data;
+
+            });
+
+    </script>
+
+    <main class="collectivite-page">
+
+        <section class="collectivite-hero">
+
+            <h1 id="nom-ville">
+                Chargement...
+            </h1>
+
+        </section>
+
+        <section class="infos-grid">
+
+            <div class="info-card">
+
+                <span>
+                    Maire
+                </span>
+
+                <h3 id="maire"></h3>
+
+            </div>
+
+            <div class="info-card">
+
+                <span>
+                    Région
+                </span>
+
+                <h3 id="region"></h3>
+
+            </div>
+
+            <div class="info-card">
+
+                <span>
+                    Population
+                </span>
+
+                <h3 id="population"></h3>
+
+            </div>
+
+            <div class="info-card">
+
+    <span>
+        Observations
+    </span>
+
+    <h3 id="nb-observations">
+        0
+    </h3>
+
+</div>
+
+        </section>
+
+        <section class="observations-section">
+
+            <h2>
+                Observations
+            </h2>
+
+            <div
+        id="observations-zone"
+        class="observations-grid"
+    ></div>
+
+        </section>
+
+        
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+
+    <script src="collectivite.js"></script>
+
+</body>
+
+</html>
