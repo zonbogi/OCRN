@@ -4,21 +4,21 @@ const params = new URLSearchParams(
 
 const id = params.get("id");
 
-console.log("Observation ID =", id);
+console.log(
+    "Observation ID =",
+    id
+);
 
 async function chargerObservation() {
 
     const {
-    data,
-    error
-} = await supabaseClient
-    .from("observations")
-    .select("*")
-    .eq("id", id)
-    .single();
-
-    console.log(data);
-    console.log(error);
+        data,
+        error
+    } = await supabaseClient
+        .from("observations")
+        .select("*")
+        .eq("id", id)
+        .single();
 
     if (error) {
 
@@ -36,54 +36,75 @@ async function chargerObservation() {
         "observation-date"
     ).textContent = data.date;
 
+    document.getElementById(
+        "observation-contenu"
+    ).textContent = data.contenu;
+
+    document.getElementById(
+        "observation-image"
+    ).src = data.image_url;
+
+    document.getElementById(
+        "source-nom"
+    ).textContent = data.source_nom;
+
+    document.getElementById(
+        "source-lien"
+    ).href = data.source_url;
+
+    /* THÉMATIQUE */
+
+    const themeElement =
+        document.getElementById(
+            "observation-thematique"
+        );
+
+    themeElement.textContent =
+        data.thematique;
+
+    themeElement.href =
+        `thematique.html?theme=${encodeURIComponent(
+            data.thematique
+        )}`;
+
+    /* COLLECTIVITÉ */
+
     const {
-    data: collectivite,
-    error: erreurCollectivite
-} = await supabaseClient
-    .from("collectivités")
-    .select("nom")
-    .eq(
-        "id",
-        data.collectivite_id
-    )
-    .single();
+        data: collectivite,
+        error: erreurCollectivite
+    } = await supabaseClient
+        .from("collectivités")
+        .select("nom")
+        .eq(
+            "id",
+            data.collectivite_id
+        )
+        .single();
 
-    document.getElementById(
-    "observation-collectivite"
-).textContent =
-    collectivite.nom;
+    if (
+        !erreurCollectivite
+        && collectivite
+    ) {
 
-    document.getElementById(
-    "observation-collectivite"
-).addEventListener(
-    "click",
-    () => {
+        const collectiviteElement =
+            document.getElementById(
+                "observation-collectivite"
+            );
 
-        window.location.href =
-            `collectivite.html?id=${data.collectivite_id}`;
+        collectiviteElement.textContent =
+            collectivite.nom;
+
+        collectiviteElement.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    `collectivite.html?id=${data.collectivite_id}`;
+
+            }
+        );
 
     }
-);
-
-    document.getElementById(
-    "observation-contenu"
-).textContent = data.contenu;
-
-document.getElementById(
-    "observation-image"
-).src = data.image_url;
-
-document.getElementById(
-    "observation-thematique"
-).textContent = data.thematique;
-
-document.getElementById(
-    "source-nom"
-).textContent = data.source_nom;
-
-document.getElementById(
-    "source-lien"
-).href = data.source_url;
 
 }
 

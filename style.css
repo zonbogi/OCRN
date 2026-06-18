@@ -734,6 +734,8 @@ p {
 }
 
 
+
+
 /* DERNIÈRE OBSERVATION */
 
 .derniere-observation {
@@ -1095,11 +1097,17 @@ p {
 
 }
 
-.observation-image {
+#observation-image {
 
-    height: 220px;
+    height: 40px;
 
-    background: #ddd;
+    object-fit: cover;
+
+    border-radius: 24px;
+
+    display: block;
+
+    margin-bottom: 30px;
 
 }
 
@@ -1241,28 +1249,13 @@ p {
 }
 
 
+
+
 /* Observation page */
-.observation-page {
-
-    width: min(1200px, 92vw);
-
-    margin: 60px auto;
-
-}
-
-#observation-titre {
-
-    font-size: 4rem;
-
-    line-height: 1.05;
-
-    margin-bottom: 20px;
-
-}
 
 .observation-meta {
 
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
 }
 
@@ -1274,21 +1267,6 @@ p {
 
 }
 
-#observation-image {
-
-    width: 100%;
-
-    height: 650px;
-
-    object-fit: cover;
-
-    border-radius: 32px;
-
-    display: block;
-
-    margin-bottom: 30px;
-
-}
 
 .observation-thematique {
 
@@ -1304,21 +1282,11 @@ p {
 
     border-radius: 999px;
 
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
 }
 
-.observation-contenu {
 
-    font-size: 1.35rem;
-
-    line-height: 1.8;
-
-    width: 100%;
-
-    margin-bottom: 60px;
-
-}
 
 .source-card {
 
@@ -1362,33 +1330,44 @@ p {
 
 }
 
-#observation-collectivite {
+#observation-collectivite,
+.observation-thematique {
 
-    display: inline-block;
+    display: inline-flex;
 
-    margin-top: 12px;
+    align-items: center;
 
-    padding: 10px 18px;
+    padding: 8px 16px;
 
     border-radius: 999px;
 
-    background: rgba(244, 223, 61, 0.15);
+    background: rgba(244,223,61,0.15);
 
-    border: 1px solid rgba(244, 223, 61, 0.4);
+    border: 1px solid rgba(244,223,61,0.4);
+
+    font-size: 0.95rem;
 
     font-weight: 700;
 
-    letter-spacing: 1px;
+    color: black;
 
-    text-transform: uppercase;
+}
 
-    transition: 0.2s ease;
+.observation-thematique {
 
     cursor: pointer;
 
-    user-select: none;
+    text-decoration: none;
 
-    -webkit-user-select: none;
+    transition: 0.2s ease;
+
+}
+
+.observation-thematique:hover {
+
+    transform: translateY(-2px);
+
+    background: rgba(244,223,61,0.25);
 
 }
 
@@ -1426,18 +1405,640 @@ p {
 
 }
 
-#observation-collectivite {
+#observation-collectivite,
+.observation-thematique {
 
-    background: rgba(244, 223, 61, 0.15);
+    display: inline-flex;
 
-    border: 1px solid rgba(244, 223, 61, 0.4);
+    align-items: center;
 
     padding: 8px 16px;
 
     border-radius: 999px;
 
-    font-weight: 700;
+    background: rgba(244,223,61,0.15);
+
+    border: 1px solid rgba(244,223,61,0.4);
 
     font-size: 0.95rem;
 
+    font-weight: 700;
+
+    color: black;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+
+}
+
+#observation-collectivite,
+.observation-thematique {
+
+    padding: 6px 14px;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+}
+
+#observation-collectivite:hover,
+.observation-thematique:hover {
+
+    transform: translateY(-2px);
+
+    background: rgba(244,223,61,0.25);
+
+}
+
+
+.observation-page {
+
+    width: min(850px, 88vw);
+
+    margin: 30px auto 80px auto;
+
+}
+
+#observation-titre {
+
+    font-size: 2.8rem;
+
+    line-height: 1.05;
+
+    margin-bottom: 20px;
+
+    max-width: 850px;
+
+}
+
+#observation-image {
+
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+
+}
+
+.observation-contenu {
+
+    font-size: 1.15rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 40px;
+
+}
+
+
+/* THEMATIQUES */
+
+
+
+.thematiques-page h1 {
+
+    font-size: 4rem;
+
+    margin-bottom: 40px;
+
+}
+
+
+.thematique-card {
+
+    background: white;
+
+    border-radius: 32px;
+
+    overflow: hidden;
+
+    text-decoration: none;
+
+    color: black;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.06);
+
+    transition: 0.25s ease;
+
+}
+
+.thematique-card:hover {
+
+    transform: translateY(-8px);
+
+}
+
+.thematiques-page {
+
+    width: min(1000px, 90vw);
+
+    margin: 40px auto;
+
+}
+
+.thematiques-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+.thematique-card {
+
+    border-radius: 24px;
+    overflow: visible
+
+}
+
+.thematique-card img {
+
+    height: 140px;
+
+    transition:
+        transform 0.35s ease;
+
+    transform-origin: center center;
+
+}
+
+.thematique-card:hover img {
+
+    transform: scale(1.35);
+
+    z-index: 10;
+
+    position: relative;
+
+}
+
+.thematique-card h2 {
+
+    padding: 15px;
+
+    font-size: 1.1rem;
+
+    text-align: center;
+
+}
+
+#observations-zone {
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.observation-card {
+
+    display: block;
+
+    background: white;
+
+    padding: 24px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: 0.2s;
+
+}
+
+.observation-card:hover {
+
+    transform: translateY(-3px);
+
+}
+
+
+/* THEMATIQUE */
+/* PAGE THÉMATIQUE */
+
+.thematique-page {
+
+    width: min(1400px, 92vw);
+
+    margin: 50px auto 80px auto;
+
+}
+
+#titre-thematique {
+
+    font-size: 3.5rem;
+
+    line-height: 1.05;
+
+    margin-bottom: 8px;
+
+}
+
+#compteur-observations {
+
+    font-size: 1rem;
+
+    color: #888;
+
+    margin-bottom: 35px;
+
+}
+
+#observations-zone {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 20px;
+
+}
+
+#observations-zone .observation-card {
+
+    display: block;
+
+    background: white;
+
+    padding: 32px;
+
+    border-radius: 24px;
+
+    border: 1px solid #ececec;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.04);
+
+}
+
+#observations-zone .observation-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.08);
+
+}
+
+#observations-zone .observation-card h2 {
+
+    font-size: 1.05rem;
+
+    line-height: 1.35;
+
+    margin-bottom: 12px;
+
+}
+
+#observations-zone .observation-card p {
+
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+
+    color: #666;
+
+}
+
+#observations-zone .observation-date {
+
+    color: #888;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+
+}
+
+#observations-zone .observation-lire-plus {
+
+    margin-top: 20px;
+
+    font-weight: 700;
+
+    color: #d4bd14;
+
+}
+
+.thematique-hero {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4df3d,
+            #ffe97d
+        );
+
+    padding: 40px;
+
+    border-radius: 30px;
+
+    margin: 30px 0 50px 0;
+
+}
+
+.thematique-badge {
+
+    display: inline-block;
+
+    padding: 8px 16px;
+
+    border-radius: 999px;
+
+    background: rgba(0,0,0,0.08);
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+
+}
+
+/* Cartes observations thématiques */
+
+#observations-zone {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(320px, 1fr));
+
+    gap: 24px;
+
+}
+
+#observations-zone .observation-card {
+
+    background: white;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    border: 1px solid #ececec;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.05);
+
+}
+
+#observations-zone .observation-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.10);
+
+}
+
+#observations-zone .observation-image {
+
+    width: 100%;
+
+    height: 220px;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+#observations-zone .observation-content {
+
+    padding: 20px;
+
+}
+
+#observations-zone .observation-date {
+
+    color: #888;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+    margin-bottom: 10px;
+
+}
+
+#observations-zone .observation-card h2 {
+
+    font-size: 1.15rem;
+
+    line-height: 1.35;
+
+    margin-bottom: 16px;
+
+}
+
+#observations-zone .observation-lire-plus {
+
+    font-weight: 700;
+
+    color: #d4bd14;
+
+}
+
+/* PARTICIPER */
+
+.participer-page,
+body > h1,
+.participer-intro,
+.participer-actions,
+.participer-note {
+    width: min(1000px, 90vw);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body > h1 {
+    font-size: 4.5rem;
+    line-height: 0.95;
+    margin-top: 60px;
+    margin-bottom: 24px;
+}
+
+.participer-intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #555;
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+
+.participer-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+.participer-signaler,
+.participer-contact {
+    background: white;
+    border: 1px solid #ececec;
+    border-radius: 28px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.participer-signaler h2,
+.participer-contact h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.participer-bouton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f4df3d;
+    color: black;
+    text-decoration: none;
+
+    padding: 16px 24px;
+    border-radius: 999px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.participer-bouton:hover {
+    transform: translateY(-2px);
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-link {
+    text-decoration: none;
+    color: black;
+
+    padding: 14px 18px;
+
+    border-radius: 16px;
+
+    background: #fafafa;
+    border: 1px solid #ececec;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.contact-link:hover {
+    background: #f4df3d;
+    border-color: #f4df3d;
+}
+
+.participer-note {
+    padding: 30px;
+    border-radius: 24px;
+
+    background: rgba(244,223,61,0.12);
+    border: 1px solid rgba(244,223,61,0.35);
+
+    line-height: 1.8;
+    color: #444;
+
+    margin-bottom: 80px;
+}
+
+@media (max-width: 800px) {
+
+    body > h1 {
+        font-size: 3rem;
+    }
+
+    .participer-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .participer-signaler,
+    .participer-contact {
+        padding: 28px;
+    }
+
+}
+
+button,
+a,
+.participer-bouton,
+.contact-link {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+.participer-hero {
+
+    width: min(1400px, 90vw);
+
+    margin: 70px auto 80px auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    align-items: end;
+}
+
+.participer-hero h1 {
+
+    font-size: clamp(5rem, 8vw, 8rem);
+
+    line-height: 0.9;
+
+    margin: 0;
+}
+
+.participer-intro {
+
+    font-size: 1.3rem;
+
+    line-height: 1.7;
+
+    color: #555;
+
+    align-self: end;
+
+    margin-bottom: -5px;
 }

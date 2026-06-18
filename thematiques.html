@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Collectivité</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <script>
+
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+
+        document.getElementById("header").innerHTML = data;
+
+        const navbar = document.querySelector(".navbar");
+
+        navbar.classList.add("intro");
+
+        setTimeout(() => {
+            navbar.classList.remove("intro");
+        }, 1000);
+
+        const page =
+            window.location.pathname
+            .split("/")
+            .pop();
+
+        document
+            .querySelectorAll(".menu-item")
+            .forEach(item => {
+
+                if (
+                    item.getAttribute("href")
+                    === page
+                ) {
+                    item.classList.add("actif");
+                }
+
+            });
+
+    });
+
+</script>
+
+<main class="thematiques-page">
+
+    <h1>
+        Thématiques
+    </h1>
+
+    <div class="thematiques-grid">
+
+        <a
+    class="thematique-card"
+    href="thematique.html?theme=Culture%20et%20mémoire"
+>
+    <img src="assets/1culhis.png">
+    <h2>Culture et mémoire</h2>
+</a>
+
+        <a
+    class="thematique-card"
+    href="thematique.html?theme=Discriminations%20et%20exclusions"
+>
+            <img src="assets/3disexc.png">
+            <h2>Discriminations et exclusions</h2>
+        </a>
+
+        <a
+    class="thematique-card"
+    href="thematique.html?theme=Symboles%20et%20idéologie"
+>
+            <img src="assets/5symide.png">
+            <h2>Symboles et idéologie</h2>
+        </a>
+
+        <a
+    class="thematique-card"
+    href="thematique.html?theme=Gestion%20municipale"
+>
+            <img src="assets/4gesmun.png">
+            <h2>Gestion municipale</h2>
+        </a>
+
+        <a
+    class="thematique-card"
+    href="thematique.html?theme=Vie%20démocratique"
+>
+            <img src="assets/6viedem.png">
+            <h2>Vie démocratique</h2>
+        </a>
+
+        <a
+    class="thematique-card"
+    href="thematique.html?theme=Le%20Vide"
+>
+            <img src="assets/3vide.png">
+            <h2>Le Vide</h2>
+        </a>
+
+    </div>
+
+</main>

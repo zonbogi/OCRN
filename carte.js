@@ -7,11 +7,12 @@ let tousLesMarkers = [];
 let toutesLesObservations = [];
 
 L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+    "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
     {
         subdomains: "abcd",
         maxZoom: 20,
-        attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+        attribution:
+            "&copy; OpenStreetMap contributors &copy; CARTO"
     }
 ).addTo(map);
 

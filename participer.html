@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Participer | OCRN </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <script>
+
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+
+        document.getElementById("header").innerHTML = data;
+
+        const navbar = document.querySelector(".navbar");
+
+        navbar.classList.add("intro");
+
+        setTimeout(() => {
+            navbar.classList.remove("intro");
+        }, 1000);
+
+        const page =
+            window.location.pathname
+            .split("/")
+            .pop();
+
+        document
+            .querySelectorAll(".menu-item")
+            .forEach(item => {
+
+                if (
+                    item.getAttribute("href")
+                    === page
+                ) {
+                    item.classList.add("actif");
+                }
+
+            });
+
+    });
+
+</script>
+
+<section class="participer-hero">
+
+    <h1>Participer</h1>
+
+    <p class="participer-intro">
+        Vous avez connaissance d'une décision,
+        déclaration ou action relevant du champ
+        d'observation de l'OCRN ?
+        Aidez-nous à documenter ces informations.
+    </p>
+
+</section>
+
+<section class="participer-actions">
+
+    <div class="participer-signaler">
+
+        <h2>Signaler une observation</h2>
+
+        <a
+            id="lien-formulaire"
+            class="participer-bouton"
+            target="_blank"
+        >
+            Accéder au formulaire →
+        </a>
+
+    </div>
+
+    <div class="participer-contact">
+
+        <h2>Nous rejoindre</h2>
+
+        <div class="contact-links">
+
+            <a
+                id="lien-whatsapp"
+                class="contact-link"
+                target="_blank"
+            >
+                WhatsApp
+            </a>
+
+            <a
+                id="lien-instagram"
+                class="contact-link"
+                target="_blank"
+            >
+                Instagram
+            </a>
+
+            <a
+                id="lien-email"
+                class="contact-link"
+            >
+                Email
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<p class="participer-note">
+    Chaque observation contribue à documenter
+    l'action des collectivités administrées
+    par le RN. Les informations reçues sont
+    vérifiées avant publication.
+</p>
+
+<script src="participer.js"></script>
+</body>
