@@ -2055,3 +2055,42 @@ a,
 body.carte-page-body {
     overflow: hidden;
 }
+
+
+
+.mobile-warning {
+    display: none;
+}
+
+@media (max-width: 900px) {
+
+    .mobile-warning {
+        position: fixed;
+        inset: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: white;
+        z-index: 999999;
+
+        text-align: center;
+        padding: 30px;
+    }
+
+    .mobile-warning-content h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .mobile-warning-content p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.6;
+    }
+
+    body > *:not(.mobile-warning) {
+        display: none !important;
+    }
+}
