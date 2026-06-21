@@ -29,8 +29,12 @@ async function chargerObservation() {
     }
 
     document.getElementById(
-        "observation-titre"
-    ).textContent = data.titre;
+    "observation-titre"
+).textContent = data.titre;
+
+document.title =
+    data.titre + " | OCRN";
+    
 
     document.getElementById(
         "observation-date"

@@ -400,17 +400,22 @@ p {
     display: none;
 }
 
+
 .lumiere-img {
 
+    opacity: 1;
+
     transition:
+        opacity 0.35s ease,
         transform 0.25s ease;
 
 }
 
-.lumiere-img {
+.lumiere-cachee {
 
-    transition:
-        transform 0.25s ease;
+    opacity: 0;
+
+    pointer-events: none;
 
 }
 
@@ -432,9 +437,11 @@ p {
 
     position: absolute;
 
-    top: 100px;
+    top: 20px;
 
-    left: 20px;
+    right: 20px;
+
+    left: auto;
 
     z-index: 1000;
 
@@ -2041,4 +2048,10 @@ a,
     align-self: end;
 
     margin-bottom: -5px;
+}
+
+
+/* FORBID SCROLL */
+body.carte-page-body {
+    overflow: hidden;
 }

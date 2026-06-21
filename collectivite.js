@@ -27,6 +27,7 @@ async function chargerCollectivite() {
     document.getElementById(
         "nom-ville"
     ).textContent = data.nom;
+    document.title = `${data.nom} | OCRN`;
 
     document.getElementById(
         "population"
@@ -119,14 +120,16 @@ async function chargerCollectivite() {
     class="observation-card observation-principale"
     data-id="${principale.id}"
 >
-        <div
-            class="observation-image"
-            style="
-                background-image:url('${principale.image_url}');
-                background-size:cover;
-                background-position:center;
-            "
-        ></div>
+        ${principale.image_url ? `
+<div
+    class="observation-image"
+    style="
+        background-image:url('${principale.image_url}');
+        background-size:cover;
+        background-position:center;
+    "
+></div>
+` : ""}
 
         <div class="observation-content">
 
@@ -161,14 +164,16 @@ async function chargerCollectivite() {
     data-id="${obs.id}"
 >
 
-            <div
-                class="observation-image"
-                style="
-                    background-image:url('${obs.image_url}');
-                    background-size:cover;
-                    background-position:center;
-                "
-            ></div>
+            ${obs.image_url ? `
+<div
+    class="observation-image"
+    style="
+        background-image:url('${obs.image_url}');
+        background-size:cover;
+        background-position:center;
+    "
+></div>
+` : ""}
 
             <div class="observation-content">
 

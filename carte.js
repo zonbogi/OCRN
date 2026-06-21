@@ -1,10 +1,10 @@
-const map = L.map("map").setView([46.5, 2.2], 6);
+const map = L.map("map").setView([47, 6.6], 6);
 
 let toutesLesCollectivites = [];
-
 let tousLesMarkers = [];
-
 let toutesLesObservations = [];
+
+const groupesDeMarkers = {};
 
 L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
@@ -89,18 +89,33 @@ console.log(
 
         tousLesMarkers.push(marker);
 
-        marker.bindTooltip(ville.nom);
-        marker.on("mouseover", () => {
+        const cle =
+    `${ville.latitude.toFixed(3)}-${ville.longitude.toFixed(3)}`;
+
+if (!groupesDeMarkers[cle]) {
+    groupesDeMarkers[cle] = [];
+}
+
+groupesDeMarkers[cle].push(marker);
+
+marker.bindTooltip(ville.nom);
+marker.on("mouseover", () => {
     marker.getElement()
         ?.querySelector(".lumiere-img")
         ?.classList.add("hover");
+
 });
 
+
 marker.on("mouseout", () => {
+
     marker.getElement()
         ?.querySelector(".lumiere-img")
         ?.classList.remove("hover");
+
 });
+
+
 
         marker.on("click", async () => {
 
@@ -324,10 +339,6 @@ function filtrerPopulation() {
         "filtre-theme"
     ).value;
 
-    tousLesMarkers.forEach(
-        marker => map.removeLayer(marker)
-    );
-
     toutesLesCollectivites.forEach(
         (ville, index) => {
 
@@ -443,23 +454,32 @@ else if (
 
 }
 
-            if (
+
+const marker =
+    tousLesMarkers[index];
+
+const element =
+    marker.getElement();
+
+if (
     afficher
     &&
     afficherDocumentation
     &&
     afficherTheme
-)
+) {
 
-{
-
-    map.addLayer(
-        tousLesMarkers[index]
-    );
+    if (element) {
+        element.style.opacity = "1";
+    }
 
     compteur++;
 
-    
+} else {
+
+    if (element) {
+        element.style.opacity = "0";
+    }
 
 }
 
@@ -512,10 +532,6 @@ boite.addEventListener(
             e.clientX
             - boite.offsetLeft;
 
-        offsetY =
-            e.clientY
-            - boite.offsetTop;
-
     }
 );
 
@@ -523,19 +539,54 @@ document.addEventListener(
     "mousemove",
     e => {
 
-        if (
-            !estEnTrainDeGlisser
-        ) return;
+        if (!estEnTrainDeGlisser) return;
 
-        boite.style.left =
+        const container =
+            document.querySelector(".carte-page");
+
+        const containerRect =
+            container.getBoundingClientRect();
+
+        let nouvelleGauche =
             e.clientX
             - offsetX
-            + "px";
+            - containerRect.left;
 
-        boite.style.top =
+        let nouveauHaut =
             e.clientY
             - offsetY
-            + "px";
+            - containerRect.top;
+
+        const marge = 20;
+
+        const maxLeft =
+            container.offsetWidth
+            - boite.offsetWidth
+            - marge;
+
+        const maxTop =
+            container.offsetHeight
+            - boite.offsetHeight
+            - marge;
+
+        nouvelleGauche = Math.max(
+            marge,
+            Math.min(
+                nouvelleGauche,
+                maxLeft
+            )
+        );
+
+        nouveauHaut = Math.max(
+            marge,
+            Math.min(
+                nouveauHaut,
+                maxTop
+            )
+        );
+
+        boite.style.left =
+            nouvelleGauche + "px";
 
     }
 );

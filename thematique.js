@@ -10,6 +10,11 @@ document.getElementById(
     "titre-thematique"
 ).textContent = theme;
 
+document.title =
+    theme + " | OCRN";
+
+
+
 chargerObservations();
 
 async function chargerObservations() {
@@ -54,11 +59,13 @@ async function chargerObservations() {
     href="observation.html?id=${obs.id}"
 >
 
-    <img
-        src="${obs.image_url}"
-        class="observation-image"
-        alt="${obs.titre}"
-    >
+    ${obs.image_url ? `
+<img
+    src="${obs.image_url}"
+    class="observation-image"
+    alt="${obs.titre}"
+>
+` : ""}
 
     <div class="observation-content">
 
