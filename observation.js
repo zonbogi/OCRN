@@ -44,9 +44,14 @@ document.title =
         "observation-contenu"
     ).textContent = data.contenu;
 
-    document.getElementById(
-        "observation-image"
-    ).src = data.image_url;
+    const image = document.getElementById("observation-image");
+
+if (data.image_url) {
+    image.src = data.image_url;
+    image.style.display = "block";
+} else {
+    image.style.display = "none";
+}
 
     document.getElementById(
         "source-nom"

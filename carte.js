@@ -1,4 +1,17 @@
-const map = L.map("map").setView([47, 6.6], 6);
+const map = L.map("map");
+
+const franceBounds = L.latLngBounds(
+    [41.8, -5.3],   // Southwest
+    [50.9, 8.4]     // Northeast
+);
+
+map.fitBounds(franceBounds, {
+    padding: [20, 20]
+});
+
+map.fitBounds(franceBounds, {
+    padding: [20, 20]
+});
 
 let toutesLesCollectivites = [];
 let tousLesMarkers = [];
@@ -599,5 +612,18 @@ document.addEventListener(
 
     }
 );
+
+}
+
+const boutonFiltres = document.getElementById("ouvrir-filtres");
+const panneauFiltres = document.querySelector(".filtres-zone");
+
+if (boutonFiltres && panneauFiltres) {
+
+    boutonFiltres.addEventListener("click", () => {
+
+        panneauFiltres.classList.toggle("mobile-open");
+
+    });
 
 }

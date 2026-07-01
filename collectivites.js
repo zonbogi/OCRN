@@ -9,71 +9,57 @@ function afficherCollectivites(collectivites) {
     const zone = document.getElementById(
         "collectivites-table"
     );
+    const mobile = window.innerWidth <= 900;
 
-    zone.innerHTML = `
-        <table class="collectivites-table">
+    zone.innerHTML = mobile ? `
 
-        
-            <thead>
-            
-                <tr>
+<table class="collectivites-table">
 
-    <th id="tri-nom" class="triable">
-        Nom
-        <span id="fleche-nom">▼</span>
-    </th>
+    <thead>
 
-    <th id="tri-population" class="triable">
-        Population
-        <span id="fleche-population">▼</span>
-    </th>
+        <tr>
 
-    <th id="tri-region" class="triable">
-        Région
-        <span id="fleche-region">▼</span>
-    </th>
+            <th id="tri-nom" class="triable">
+                Nom
+            </th>
 
-    <th id="tri-maire" class="triable">
-        Maire
-        <span id="fleche-maire">▼</span>
-    </th>
-    <th id="tri-observations">
-    Observations
-    <span id="fleche-observations">▼</span>
-</th>
+            <th id="tri-maire" class="triable">
+                Maire
+            </th>
 
-    
+            <th id="tri-observations">
+                Obs.
+            </th>
 
+        </tr>
 
-</tr>
-            </thead>
+    </thead>
 
-            <tbody>
+    <tbody>
 
-                ${collectivites.map(ville => `
-                    <tr data-id="${ville.id}">
+        ${collectivites.map(ville => `
 
-                        <td>
-${ville.nom}
-</td>
+            <tr data-id="${ville.id}">
 
-                        <td>
-                            ${ville.population.toLocaleString("fr-FR")}
-                        </td>
+                <td>${ville.nom}</td>
 
-                        <td>${ville.region}</td>
+                <td>${ville.maire}</td>
 
-                        <td>${ville.maire}</td>
+                <td>${ville.nbObservations}</td>
 
-                        <td>${ville.nbObservations}</td>
+            </tr>
 
-                    </tr>
-                `).join("")}
+        `).join("")}
 
-            </tbody>
+    </tbody>
 
-        </table>
-    `;
+</table>
+
+`
+
+:
+
+`/* KEEP YOUR CURRENT TABLE HERE EXACTLY AS IT IS */`;
 
     const boutonPopulation =
     document.getElementById(

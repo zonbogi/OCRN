@@ -14,19 +14,9 @@ async function chargerLiens() {
         data.formulaire;
 
     document.getElementById(
-        "lien-whatsapp"
-    ).href =
-        data.whatsapp;
-
-    document.getElementById(
         "lien-instagram"
     ).href =
         data.instagram;
-
-    document.getElementById(
-        "lien-email"
-    ).href =
-        "mailto:" + data.email;
 
 }
 
@@ -38,9 +28,7 @@ fetch("participer.json")
             "lien-formulaire"
         ).href = data.formulaire;
 
-        document.getElementById(
-            "lien-whatsapp"
-        ).href = data.whatsapp;
+        document.getElementById("lien-signal").href = data.signal;
 
         document.getElementById(
             "lien-instagram"

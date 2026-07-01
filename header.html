@@ -15,7 +15,11 @@
 
     </a>
 
-    <nav class="menu">
+   <button class="burger" id="burger">
+☰
+</button>
+
+<nav class="menu" id="menu">
 
         <a href="carte.html" class="menu-item">
             <img src="assets/map.png" alt="Carte interactive">
@@ -43,5 +47,13 @@
 
 <script>
 
+const burger = document.getElementById("burger");
+const menu = document.getElementById("menu");
+
+burger.addEventListener("click", () => {
+
+    menu.classList.toggle("mobile-open");
+
+});
 
 </script>

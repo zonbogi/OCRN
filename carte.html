@@ -25,39 +25,17 @@
 
 <body class="carte-page-body">
 
-    <div id="header"></div>
+<div id="header"></div>
 
-    <script>
+<script src="header.js"></script>
 
-fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
 
-        document.getElementById("header").innerHTML = data;
-
-        const navbar = document.querySelector(".navbar");
-
-        navbar.classList.add("intro");
-
-        setTimeout(() => {
-            navbar.classList.remove("intro");
-        }, 1000);
-
-        const page = window.location.pathname.split("/").pop();
-        
-        document.querySelectorAll(".menu-item").forEach(item => {
-
-            if (item.getAttribute("href") === page) {
-                item.classList.add("actif");
-            }
-
-        });
-
-    });
-
-    </script>
 
     <main class="carte-page">
+
+        <button id="ouvrir-filtres" class="floating-filter-button">
+    ⚙️
+</button>
 
     <div class="filtres-zone">
 
