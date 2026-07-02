@@ -171,7 +171,7 @@ marker.on("mouseout", () => {
             fiche.style.display = "block";
 
             fiche.innerHTML = `
-                <div class="fiche-fermer">✕</div>
+                <div class="fiche-fermer">×</div>
 
                 <div class="fiche-header">
 
@@ -236,13 +236,13 @@ marker.on("mouseout", () => {
                 </div>
             `;
 
-            document
-                .querySelector(".fiche-fermer")
-                .addEventListener("click", () => {
+            fiche
+    .querySelector(".fiche-fermer")
+    .addEventListener("click", () => {
 
-                    fiche.style.display = "none";
+        fiche.style.display = "none";
 
-                });
+    });
 
         });
 
@@ -622,8 +622,37 @@ if (boutonFiltres && panneauFiltres) {
 
     boutonFiltres.addEventListener("click", () => {
 
-        panneauFiltres.classList.toggle("mobile-open");
+        if (window.innerWidth <= 900) {
+
+            // Mobile
+            panneauFiltres.classList.toggle("mobile-open");
+
+        } else {
+
+            // Desktop
+            if (panneauFiltres.style.display === "none") {
+
+                panneauFiltres.style.display = "block";
+
+            } else {
+
+                panneauFiltres.style.display = "none";
+
+            }
+
+        }
 
     });
 
 }
+
+const fermerFiltres = document.querySelector(".filtres-fermer");
+
+fermerFiltres?.addEventListener("click", (e) => {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    panneauFiltres.classList.remove("mobile-open");
+
+});

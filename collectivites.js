@@ -59,8 +59,66 @@ function afficherCollectivites(collectivites) {
 
 :
 
-`/* KEEP YOUR CURRENT TABLE HERE EXACTLY AS IT IS */`;
+zone.innerHTML = mobile ? `
+    ...
+`
+:
+`
+<table class="collectivites-table">
 
+    <thead>
+
+        <tr>
+
+            <th id="tri-nom" class="triable">
+                Nom
+            </th>
+
+            <th id="tri-population" class="triable">
+                Population
+            </th>
+
+            <th id="tri-region" class="triable">
+                Région
+            </th>
+
+            <th id="tri-maire" class="triable">
+                Maire
+            </th>
+
+            <th id="tri-observations" class="triable">
+                Observations
+            </th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        ${collectivites.map(ville => `
+
+            <tr data-id="${ville.id}">
+
+                <td>${ville.nom}</td>
+
+                <td>${ville.population.toLocaleString("fr-FR")}</td>
+
+                <td>${ville.region}</td>
+
+                <td>${ville.maire}</td>
+
+                <td>${ville.nbObservations}</td>
+
+            </tr>
+
+        `).join("")}
+
+    </tbody>
+
+</table>
+`;
+if (!mobile) {
     const boutonPopulation =
     document.getElementById(
         "tri-population"
@@ -233,11 +291,13 @@ boutonObservations.addEventListener(
 
     }
 );
+}
 
 document
     .querySelectorAll(
         ".collectivites-table tbody tr"
     )
+    
     .forEach(row => {
 
         row.addEventListener(
