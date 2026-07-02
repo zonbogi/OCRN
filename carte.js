@@ -111,7 +111,62 @@ if (!groupesDeMarkers[cle]) {
 
 groupesDeMarkers[cle].push(marker);
 
-marker.bindTooltip(ville.nom);
+const tooltip = marker.bindTooltip(ville.nom, {
+    permanent: false,
+    direction: "top",
+    offset: [0, -12]
+});
+
+function updateLabel() {
+
+    if (window.innerWidth > 900) return;
+
+    const zoom = map.getZoom();
+
+    let show = false;
+
+    if (zoom <= 6) {
+
+        show = false;
+
+    } else if (zoom === 7) {
+
+        show = ville.population >= 150000;
+
+    } else if (zoom === 8) {
+
+        show = ville.population >= 75000;
+
+    } else if (zoom === 8) {
+
+        show = ville.population >= 30000;
+
+    } else if (zoom === 8) {
+
+        show = ville.population >= 10000;
+
+    } else {
+
+        show = true;
+
+    }
+
+    if (show) {
+
+        tooltip.openTooltip();
+
+    } else {
+
+        tooltip.closeTooltip();
+
+    }
+
+}
+
+updateLabel();
+map.on("zoomend", updateLabel);
+
+
 marker.on("mouseover", () => {
     marker.getElement()
         ?.querySelector(".lumiere-img")

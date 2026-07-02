@@ -535,5 +535,37 @@ body > h1 {
 
 }
 
+ .leaflet-tooltip{
+
+    background:rgba(22,22,22,.82);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    border:none;
+
+    border-radius:999px;
+
+    padding:5px 11px;
+
+    font-size:.78rem;
+
+    font-weight:600;
+
+    letter-spacing:.02em;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.18);
 
 }
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before{
+
+    display:none;
+
+}
+
+}
+
