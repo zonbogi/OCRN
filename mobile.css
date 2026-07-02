@@ -567,5 +567,73 @@ body > h1 {
 
 }
 
+/* ================= HOME STATS ================= */
+
+.home-stats{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:55px;
+
+    padding:60px 30px;
+
+}
+
+.home-stat{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.home-number{
+
+    font-size:5.5rem;
+
+}
+
+.home-label{
+
+    margin-top:8px;
+
+    font-size:2rem;
+
+}
+
+.home-buttons{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:0 30px 50px;
+
+}
+
+.home-button{
+
+    width:100%;
+
+    max-width:350px;
+
+    text-align:center;
+
+}
+
+.scroll-indicator{
+
+    display:none;
+
+}
+
 }
 
