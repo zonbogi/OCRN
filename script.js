@@ -30,3 +30,26 @@ async function chargerCollectivites() {
 }
 
 chargerCollectivites();
+
+const arrow = document.querySelector(".scroll-indicator");
+
+if (arrow) {
+
+    window.addEventListener("scroll", () => {
+
+        const hero = document.querySelector(".hero");
+
+        if (!hero) return;
+
+        const heroBottom = hero.offsetTop + hero.offsetHeight;
+        const scrollBottom = window.scrollY + window.innerHeight;
+
+        if (scrollBottom >= heroBottom - 50) {
+            arrow.classList.add("hidden");
+        } else {
+            arrow.classList.remove("hidden");
+        }
+
+    });
+
+}

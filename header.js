@@ -6,15 +6,26 @@ fetch("header.html")
 
         const navbar = document.querySelector(".navbar");
 
-        if (navbar) {
-            navbar.classList.add("intro");
+        if (navbar && sessionStorage.getItem("navbarIntro") === "true") {
 
-            setTimeout(() => {
-                navbar.classList.remove("intro");
-            }, 1000);
-        }
+    navbar.classList.add("intro");
+
+    sessionStorage.removeItem("navbarIntro");
+
+    setTimeout(() => {
+        navbar.classList.remove("intro");
+    }, 300);
+
+}
 
         const page = window.location.pathname.split("/").pop();
+        document.querySelectorAll(".menu-item").forEach(item => {
+
+    item.addEventListener("click", () => {
+        sessionStorage.setItem("navbarIntro", "true");
+    });
+
+});
 
         document.querySelectorAll(".menu-item").forEach(item => {
 
