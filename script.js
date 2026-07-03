@@ -26,7 +26,33 @@ async function chargerCollectivites() {
         .from("collectivités")
         .select("*");
 
+    if (error) {
+        console.error(error);
+        return;
+    }
+
     console.log(data);
+
+    const compteurAccueil = document.getElementById("home-nb-collectivites");
+    if (compteurAccueil) {
+        compteurAccueil.textContent = data.length;
+    }
+
+    const populationTotale = data.reduce(
+    (total, collectivite) => total + (collectivite.population || 0),
+    0
+);
+
+// Round down to the nearest 100,000
+const populationArrondie = Math.floor(populationTotale / 100000) * 100000;
+
+// Convert to "1.7M+"
+const textePopulation = (populationArrondie / 1000000).toFixed(1) + "M+";
+
+const populationAccueil = document.getElementById("home-population");
+if (populationAccueil) {
+    populationAccueil.textContent = textePopulation;
+}
 }
 
 chargerCollectivites();
@@ -53,3 +79,4 @@ if (arrow) {
     });
 
 }
+

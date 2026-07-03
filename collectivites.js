@@ -369,8 +369,17 @@ async function chargerCollectivites() {
     (a, b) => b.population - a.population
 );
 
-    document.getElementById("nb-collectivites")
-        .textContent = data.length;
+    const nbCollectivites = data.length;
+
+const compteurCollectivites = document.getElementById("nb-collectivites");
+if (compteurCollectivites) {
+    compteurCollectivites.textContent = nbCollectivites;
+}
+
+const compteurAccueil = document.getElementById("home-nb-collectivites");
+if (compteurAccueil) {
+    compteurAccueil.textContent = nbCollectivites;
+}
 
     document.getElementById("population-totale")
         .textContent = data
