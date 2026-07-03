@@ -2225,3 +2225,20 @@ body.carte-page-body {
     }
 
 }
+
+.thematique-large {
+    grid-column: span 2;
+}
+
+.thematique-large {
+    grid-column: span 2;
+}
+
+.thematique-large img {
+    display: block;
+    margin: 0 auto;
+}
+
+.thematique-large:hover img {
+    transform: scale(1.35);
+}
