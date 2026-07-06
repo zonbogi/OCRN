@@ -23,20 +23,32 @@ async function testDatabase() {
 async function chargerCollectivites() {
 
     const { data, error } = await supabaseClient
-        .from("collectivités")
-        .select("*");
+    .from("collectivités")
+    .select("*");
 
-    if (error) {
-        console.error(error);
-        return;
-    }
+const { data: observations, error: observationsError } =
+    await supabaseClient
+        .from("observations")
+        .select("id");
 
-    console.log(data);
+if (error || observationsError) {
+    console.error(error || observationsError);
+    return;
+}
+
+console.log(data);
 
     const compteurAccueil = document.getElementById("home-nb-collectivites");
-    if (compteurAccueil) {
-        compteurAccueil.textContent = data.length;
-    }
+
+if (compteurAccueil) {
+    compteurAccueil.textContent = data.length;
+}
+
+    const compteurObservations = document.getElementById("home-nb-observations");
+
+if (compteurObservations) {
+    compteurObservations.textContent = observations.length;
+}
 
     const populationTotale = data.reduce(
     (total, collectivite) => total + (collectivite.population || 0),

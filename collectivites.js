@@ -389,10 +389,17 @@ if (compteurAccueil) {
             )
             .toLocaleString("fr-FR");
 
-    document.getElementById(
-    "nb-observations"
-).textContent =
-    observations.length;
+    const compteurObservationsElement = document.getElementById("nb-observations");
+
+if (compteurObservationsElement) {
+    compteurObservationsElement.textContent = observations.length;
+}
+
+const compteurObservationsAccueil = document.getElementById("home-nb-observations");
+
+if (compteurObservationsAccueil) {
+    compteurObservationsAccueil.textContent = observations.length;
+}
 
 
     

@@ -570,41 +570,50 @@ body > h1 {
 /* ================= HOME STATS ================= */
 
 .home-stats{
-
     display:flex;
-
     flex-direction:column;
+    align-items:center;
 
-    gap:55px;
-
-    padding:60px 30px;
-
+    padding:60px 20px;
 }
 
 .home-stat{
 
+    width:100%;               /* <-- très important */
+
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
 
     text-align:center;
 
+    margin-bottom:20px;
 }
 
 .home-number{
 
-    font-size:5.5rem;
+    width:100%;               /* <-- très important */
 
+    display:block;
+
+    text-align:center;
+
+    font-size:5.5rem;
+    line-height:.9;
+
+    margin:0;
 }
 
 .home-label{
 
-    margin-top:8px;
+    width:100%;               /* <-- très important */
+
+    margin-top:10px;
+
+    text-align:center;
 
     font-size:2rem;
-
+    line-height:1.1;
 }
 
 .home-buttons{
