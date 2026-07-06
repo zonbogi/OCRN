@@ -782,6 +782,10 @@ p {
     margin-bottom: 8px;
 }
 
+#observation-contenu {
+    white-space: pre-wrap;
+}
+
 
 
 
