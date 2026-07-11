@@ -534,13 +534,15 @@ p {
 
     display: block;
 
-    margin-top: 18px;
+    margin-top: 8px;
 
     margin-bottom: 8px;
 
     font-weight: 700;
 
 }
+
+
 
 .filtres-zone select {
 
@@ -643,27 +645,60 @@ p {
 
 }
 
-
-#filtre-population {
-    display: flex;
-    flex-direction: column;
-    gap: 0px; /* space between lines */
-    margin-bottom: 20px; /* bigger gap before Documentation */
+#filtre-population{
+    display:flex;
+    flex-direction:column;
+    gap:0px;
+    margin-bottom:28px;
 }
 
-#filtre-population label {
-    display: flex;
-    align-items: center;
-    gap: 14px; /* distance checkbox → text */
-    font-size: 0.9rem; /* smaller numbers */
-    font-weight: 600;
-    cursor: pointer;
+/* Hide default checkbox */
+.population-option input{
+    display:none;
 }
 
-#filtre-population input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin: 0;
+/* Pill */
+.population-option{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:16px 20px;
+
+    border-radius:18px;
+
+    background:#f4f4f4;
+    border:2px solid transparent;
+
+    font-size:1rem;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+/* Hover */
+.population-option:hover{
+    background:#ececec;
+    transform:translateY(-2px);
+}
+
+/* Checked */
+.population-option input:checked + span{
+    color:black;
+}
+
+.population-option:has(input:checked){
+    background:#f4df3d;
+    border-color:#f4df3d;
+
+    box-shadow:0 10px 25px rgba(244,223,61,.35);
+}
+
+/* Text */
+.population-option span{
+    transition:.25s;
 }
 
 #reset-filtres {
@@ -2099,38 +2134,112 @@ body.carte-page-body {
 /* ================= HOME STATS ================= */
 
 .home-stats{
-    background:#f4df3d;
-
     display:flex;
-    justify-content:space-evenly;
-    align-items:flex-start;
+    justify-content:center;
+    align-items:stretch;
 
-    padding:70px 6vw;
+    gap:55px;
 
-    gap:40px;
+    padding:40px 6vw;
+    background:#f4df3d;
 }
 
 .home-stat{
-    flex:1;
+    position: relative;
+
+    flex:none;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
     text-align:center;
+    text-decoration:none;
+
+    padding:40px 0px;
+
+    border-radius:28px;
+
+    background:transparent;
+
+    overflow:hidden;
+
+    transition:
+        background .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+
+    width: 290px;
 }
 
+/* Hover card */
+.home-stat:hover{
+    background:rgba(120,120,120,.15);
+    backdrop-filter:blur(8px);
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+/* Click */
+.home-stat:active{
+    transform:translateY(-3px);
+}
+
+/* Number */
 .home-number{
     font-size:clamp(4.2rem,6.8vw,6.8rem);
     font-weight:700;
     color:#8f8f8f;
     line-height:.9;
     white-space:nowrap;
+
+    transition:color .3s ease;
 }
 
+/* Label */
 .home-label{
     margin-top:18px;
 
     font-size:2.2rem;
     font-weight:700;
     color:#707070;
-
     line-height:1;
+
+    transition:color .3s ease;
+}
+
+/* Hidden text */
+.home-hover-text{
+    margin-top:24px;
+
+    font-size:1.1rem;
+    font-weight:600;
+    color:#555;
+
+    opacity:0;
+    transform:translateY(12px);
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+}
+
+/* Reveal text */
+.home-stat:hover .home-hover-text{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Slight text darkening */
+.home-stat:hover .home-number{
+    color:#6b6b6b;
+}
+
+.home-stat:hover .home-label{
+    color:#555;
 }
 
 .home-buttons{
@@ -2173,65 +2282,53 @@ body.carte-page-body {
 
 /* SCROLL INDICATOR */
 
-.scroll-indicator{
-
-    position:absolute;
-
-    bottom:35px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    z-index:20;
-
-    animation:scrollBounce 2s ease-in-out infinite;
-
-    opacity:.9;
-
-    transition:opacity .35s ease;
-
-    pointer-events:none;
-
+.scroll-indicator {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    animation: scrollBounce 2s ease-in-out infinite;
 }
 
-.scroll-indicator.hidden{
-
-    opacity:0;
-
+.arrow {
+    width: 70px;
+    display: block;
+    color: #F4DF3D;
 }
 
-.scroll-indicator img{
-
-    width:70px;
-
-    display:block;
-
-    transform:rotate(180deg);
-
-    filter:drop-shadow(0 8px 20px rgba(244,223,61,.25));
-
+/* Animate only the shaft */
+.shaft {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 3s ease;
 }
 
-@keyframes scrollBounce{
+.scroll-indicator.hidden .shaft {
+    stroke-dashoffset: -100;
+    stroke-dasharray: -100;
+}
 
-    0%,100%{
-
-        transform:translateX(-50%) translateY(0);
-
+@keyframes scrollBounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
     }
 
-    50%{
-
-        transform:translateX(-50%) translateY(12px);
-
+    50% {
+        transform: translateX(-50%) translateY(12px);
     }
-
 }
 
-.thematique-large {
-    grid-column: span 2;
+.scroll-indicator {
+    opacity: .9;
+    transition: opacity 3s ease;
 }
+
+.scroll-indicator.hidden {
+    opacity: 0;
+}
+
+/* THEMATIQUE */
 
 .thematique-large {
     grid-column: span 2;
@@ -2244,4 +2341,142 @@ body.carte-page-body {
 
 .thematique-large:hover img {
     transform: scale(1.35);
+}
+
+/* =========================
+   DIVERS CARD
+========================= */
+
+.divers-card{
+    overflow:hidden;
+}
+.divers-illustration{
+    position:relative;
+    width:180px;
+    height:140px;
+    margin:0 auto;
+}
+
+.divers-main{
+    position:absolute;
+    left:50%;
+    bottom:0;
+    width:120px;
+
+    transform:translateX(-50%) !important;
+    z-index:10;
+}
+
+.divers-face{
+    position:absolute;
+    width:70px;
+    opacity:0;
+    z-index:5;
+
+    transition:.45s cubic-bezier(.22,1,.36,1);
+}
+
+/* Hidden positions */
+
+.face-left{
+    left:-20px;
+    bottom:5px;
+    transform:translateX(35px) scale(.8);
+}
+
+.face-top{
+    left:50%;
+    top:-12px;
+    transform:translate(-50%,30px) scale(.8);
+}
+
+.face-right{
+    right:-20px;
+    bottom:5px;
+    transform:translateX(-35px) scale(.8);
+}
+
+/* Reveal */
+
+.divers-card:hover .face-left{
+    transform:translateX(-5px) scale(1);
+    opacity:1;
+}
+
+.divers-card:hover .face-top{
+    transform:translate(-50%,-10px) scale(1);
+    opacity:1;
+}
+
+.divers-card:hover .face-right{
+    transform:translateX(5px) scale(1);
+    opacity:1;
+}
+
+/* HERO ILLUS */
+/* Container */
+.building-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* PNG */
+.building {
+    display: block;
+    width: 100%;
+    max-width: 700px; /* adjust to your liking */
+    transition: transform .3s ease;
+}
+
+/* Floating label */
+.building-label {
+    position: absolute;
+    top: 18%;              /* Move up/down */
+    left: 50%;
+    transform: translate(-50%, 15px);
+
+    padding: 12px 24px;
+    border-radius: 999px;
+
+    background: #fff;
+    color: #222;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease,
+        visibility .3s ease;
+}
+
+/* Little arrow under the bubble */
+.building-label::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%) rotate(45deg);
+
+    width: 12px;
+    height: 12px;
+    background: #fff;
+}
+
+/* Show bubble when hovering */
+.building-container:hover .building-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+/* Optional: slightly enlarge the image */
+.building-container:hover .building {
+    transform: scale(1.02);
 }

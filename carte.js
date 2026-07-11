@@ -319,19 +319,15 @@ marker.on("mouseout", () => {
 }
 
 chargerCollectivites();
+const populationCheckboxes = document.querySelectorAll(
+    '#filtre-population input[type="checkbox"]'
+);
 
-document
-    .querySelectorAll(
-        '#filtre-population input[type="checkbox"]'
-    )
-    .forEach(cb => {
+populationCheckboxes.forEach(cb => {
+    cb.addEventListener("change", filtrerPopulation);
+});
 
-        cb.addEventListener(
-            "change",
-            filtrerPopulation
-        );
 
-    });
 
     document
     .getElementById(
@@ -363,27 +359,15 @@ document
 function resetFiltres() {
 
     document
-        .querySelectorAll(
-            '#filtre-population input[type="checkbox"]'
-        )
+        .querySelectorAll('#filtre-population input[type="checkbox"]')
         .forEach(cb => {
-
-            cb.checked = false;
-
+            cb.checked = true;   // <-- instead of false
         });
 
-    document
-        .getElementById(
-            "filtre-documentation"
-        ).value = "all";
-
-    document
-        .getElementById(
-            "filtre-theme"
-        ).value = "all";
+    document.getElementById("filtre-documentation").value = "all";
+    document.getElementById("filtre-theme").value = "all";
 
     filtrerPopulation();
-
 }
 
 function filtrerPopulation() {
@@ -410,7 +394,7 @@ function filtrerPopulation() {
     toutesLesCollectivites.forEach(
         (ville, index) => {
 
-            let afficher = true;
+            let afficher = false;
             let afficherDocumentation = true;
             let afficherTheme = true;
 
@@ -428,16 +412,12 @@ function filtrerPopulation() {
 
 }
 
-            if (
+if (
     populationsSelectionnees.length > 0
 ) {
 
-    afficher = false;
-
     if (
-        populationsSelectionnees.includes(
-            "moins1000"
-        )
+        populationsSelectionnees.includes("moins1000")
         &&
         ville.population < 1000
     ) {
@@ -445,9 +425,7 @@ function filtrerPopulation() {
     }
 
     if (
-        populationsSelectionnees.includes(
-            "1000-10000"
-        )
+        populationsSelectionnees.includes("1000-10000")
         &&
         ville.population >= 1000
         &&
@@ -457,9 +435,7 @@ function filtrerPopulation() {
     }
 
     if (
-        populationsSelectionnees.includes(
-            "10000-100000"
-        )
+        populationsSelectionnees.includes("10000-100000")
         &&
         ville.population >= 10000
         &&
@@ -469,9 +445,7 @@ function filtrerPopulation() {
     }
 
     if (
-        populationsSelectionnees.includes(
-            "plus100000"
-        )
+        populationsSelectionnees.includes("plus100000")
         &&
         ville.population >= 100000
     ) {
@@ -479,6 +453,7 @@ function filtrerPopulation() {
     }
 
 }
+
 
             if (
     documentationFiltre === "1-5"
@@ -528,6 +503,8 @@ const marker =
 
 const element =
     marker.getElement();
+
+console.log(ville.nom, afficher, populationsSelectionnees);
 
 if (
     afficher

@@ -145,10 +145,6 @@ async function chargerCollectivite() {
                 ${principale.thematique}
             </div>
 
-            <p class="observation-resume">
-                ${principale.resume}
-            </p>
-
             <div class="observation-lire-plus">
                 Lire l'observation →
             </div>

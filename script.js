@@ -59,7 +59,7 @@ if (compteurObservations) {
 const populationArrondie = Math.floor(populationTotale / 100000) * 100000;
 
 // Convert to "1.7M+"
-const textePopulation = (populationArrondie / 1000000).toFixed(1) + "M+";
+const textePopulation = (populationArrondie / 1000000).toFixed(1) + "M";
 
 const populationAccueil = document.getElementById("home-population");
 if (populationAccueil) {
